@@ -1,20 +1,16 @@
-import strawberry
-
+import uvicorn
 from fastapi import FastAPI
-from strawberry.fastapi import GraphQLRouter
+from src.api import router
+from src.core import get_settings
 
 
-async def test() -> str:
-    return "Hello, GraphQL!"
+app = FastAPI(title = get_settings().PROJECT_TITLE)
+
+app.include_router(
+    router = router,
+    prefix = get_settings().COMMON_API
+)
 
 
-@strawberry.type
-class Query:
-    test: str = strawberry.field(resolver=test)
-
-
-schema = strawberry.Schema(Query)
-graphql_router = GraphQLRouter(schema)
-
-app = FastAPI()
-app.include_router(graphql_router, prefix='/graphql')
+if __name__ == '__main__':
+    uvicorn.run('src.main:app', host='0.0.0.0', port=8000, reload=True)
