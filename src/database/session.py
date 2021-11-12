@@ -17,4 +17,5 @@ async def get_db() -> AsyncSession:
         try:
             yield db
         except:
-            db.close()
+            await db.close()
+            
