@@ -1,1 +1,1 @@
-from src.model.email import Email
+from src.model.email import Email, EmailCategory
