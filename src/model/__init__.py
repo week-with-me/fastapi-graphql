@@ -1,1 +1,0 @@
-from src.model.qna import QNA, QNACategory
