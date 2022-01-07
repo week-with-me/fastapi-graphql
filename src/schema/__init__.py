@@ -1,1 +1,1 @@
-from src.schema.email import EmailBase, CreateEmail
+from src.schema.qna import CreateQNA

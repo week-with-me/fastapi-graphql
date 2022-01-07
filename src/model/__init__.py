@@ -1,1 +1,1 @@
-from src.model.email import Email, EmailCategory
+from src.model.qna import QNA, QNACategory

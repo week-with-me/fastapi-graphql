@@ -1,18 +1,19 @@
 import enum
 
-from src.database import Base
 from pydantic import EmailStr
-from sqlalchemy import Column, String, Enum
+from sqlalchemy import Column, Enum, String
+
+from src.database import Base
 
 
-class EmailCategory(str, enum.Enum):
+class QNACategory(str, enum.Enum):
     ESTIMATION = '견적문의'
     AS = 'AS문의'
     ETC = '기타문의'
 
 
-class Email(Base):
-    category: EmailCategory = Column('category', Enum(EmailCategory), nullable=False)
+class QNA(Base):
+    category: QNACategory = Column('category', Enum(QNACategory), nullable=False)
     title: str = Column('title', String(length=64), nullable=False)
     content: str = Column('content', String(length=1024), nullable=False)
     company: str = Column('company', String(length=32), nullable=False)

@@ -1,16 +1,17 @@
-from src.model import EmailCategory
 from pydantic import BaseModel
 
+from src.model import QNACategory
 
-class EmailBase(BaseModel):
+
+class QNABase(BaseModel):
     
     class Config:
         
         pass
         
         
-class CreateEmail(EmailBase):
-    category: EmailCategory
+class CreateQNA(QNABase):
+    category: QNACategory
     title: str
     content: str
     company: str

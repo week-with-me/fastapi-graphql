@@ -1,33 +1,25 @@
 from functools import lru_cache
-from pydantic import BaseSettings
 
-
-COMMON_ENV_PATH = 'src/core/'
+from pydantic import BaseSettings, Field
 
 
 class Settings(BaseSettings):
-    LEVEL: str = 'DEVELOP'
+    LEVEL: str
     PROJECT_TITLE: str = 'FastAPI with GraphQL and REST'
     GRAPHQL_API: str = '/graphql'
     REST_API: str = '/rest'
     COMMON_API: str = '/api'
 
     class Config:
-        env_file = COMMON_ENV_PATH + '.env'
+        env_file = ".env"
     
 
 class DevelopSettings(Settings):
-    DB_URL: str
-
-    class Config:
-        env_file = COMMON_ENV_PATH + 'develop.env'
+    DB_URL: str = Field(env="DEVELOP_DB_URL")
      
 
 class ProductSettings(Settings):
-    DB_URL: str
-
-    class Config:
-        env_file = COMMON_ENV_PATH + 'product.env'
+    DB_URL: str = Field("PRODUCT_DB_URL")
 
 
 @lru_cache

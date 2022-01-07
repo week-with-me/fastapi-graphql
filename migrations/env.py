@@ -1,8 +1,10 @@
+from logging.config import fileConfig
+
+from alembic import context
+
 from src.core import get_settings
 from src.database import Base, engine
-from src.model import Email
-from logging.config import fileConfig
-from alembic import context
+from src.model import QNA
 
 config = context.config
 fileConfig(config.config_file_name)
